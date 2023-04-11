@@ -1,7 +1,15 @@
 
+import { useState } from 'react';
 import '../pages/Home.css'
 
+
+
+
+
 function Home() {
+
+
+
     return (
         <div className="home-container">
             <div className="nav-bar-container">
@@ -16,11 +24,12 @@ function Home() {
                 <div className="search-bar">
                     <h1>SEARCH TO FIND THE SCAM</h1>
                     <div className="search-bar-content">
-                        <input type="text" placeholder='Search scammer' />
-                        <button>SEARCH</button>
+                        <input type="text" placeholder='Search scammer'  />
+                        <button >SEARCH</button>
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

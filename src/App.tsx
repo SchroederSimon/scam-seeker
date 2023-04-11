@@ -10,8 +10,7 @@ function App() {
   return (
     <>
       <Home></Home>
-      <About></About>
-      <Result></Result>
+
     </>
   )
 }
