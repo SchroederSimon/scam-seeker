@@ -1,13 +1,17 @@
-
+import axios from 'axios';
 import { useState } from 'react';
 import '../pages/Home.css'
-
-
+import { searchReddit } from '../apiCalls';
 
 
 
 function Home() {
 
+    const [keywords, setKeywords] = useState("");
+
+    function handleSearch() {
+        searchReddit(keywords);
+    }
 
 
     return (
@@ -24,8 +28,8 @@ function Home() {
                 <div className="search-bar">
                     <h1>SEARCH TO FIND THE SCAM</h1>
                     <div className="search-bar-content">
-                        <input type="text" placeholder='Search scammer'  />
-                        <button >SEARCH</button>
+                        <input type="text" placeholder='Search scammer' onChange={(e) => setKeywords(e.target.value)} />
+                        <button onClick={handleSearch}>SEARCH</button>
                     </div>
                 </div>
             </div>
