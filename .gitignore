@@ -12,6 +12,7 @@ things.txt
 dist
 dist-ssr
 *.local
+.env
 
 # Editor directories and files
 .vscode/*
