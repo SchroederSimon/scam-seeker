@@ -23,8 +23,11 @@ export function searchGoogle(keywords: string) {
     const searchQuery = encodeURIComponent(keywords + ' scam OR ' + keywords + ' estafa');
     const cx = process.env.CSE_CX_GOOGLE;
     const apiKey = process.env.API_KEY;
-    const url = `https://www.googleapis.com/customsearch/v1?q=${searchQuery}&cx=${cx}&key=${apiKey}`;
-  
+
+    const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${searchQuery}`;
+//   const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}:omuauf_lfve&q=${searchQuery}`;
+    //www.googleapis.com/customsearch/v1?key=INSERT_YOUR_API_KEY&cx=017576662512468239146:omuauf_lfve&q=lectures
+//https://www.googleapis.com/customsearch/v1?q=${searchQuery}&cx=${cx}&key=${apiKey}
     axios.get(url)
       .then(response => {
         console.log(response.data);

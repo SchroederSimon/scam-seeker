@@ -8,12 +8,11 @@ import { searchGoogle, searchReddit } from '../apiCalls';
 function Home() {
 
     const [keywords, setKeywords] = useState("");
+    const [searchTerm, setSearchTerm] = useState('');
 
     function handleSearch() {
         searchReddit(keywords);
     }
-
-    const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchTerm(event.target.value);

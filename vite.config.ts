@@ -6,8 +6,6 @@ import EnvironmentPlugin from 'vite-plugin-environment'
 export default defineConfig({
   plugins: [
     react(),
-    EnvironmentPlugin({
-      API_KEY: ''
-    })
+    EnvironmentPlugin(['API_KEY', 'CSE_CX_GOOGLE'])
   ],
 })
