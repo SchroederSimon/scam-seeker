@@ -18,10 +18,6 @@ function Home() {
       setSearchTerm(event.target.value);
     };
   
-    const handleRedditSearch = () => {
-      searchReddit(searchTerm);
-    };
-  
     const handleGoogleSearch = () => {
       searchGoogle(searchTerm);
     };
@@ -43,11 +39,9 @@ function Home() {
                     <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
                         <button onClick={handleSearch}>SEARCH</button>
                         <button onClick={handleGoogleSearch}>Search Google</button>
-
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
