@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import '../pages/Home.css'
 import { searchGoogle, searchReddit } from '../apiCalls';
@@ -7,19 +6,14 @@ import { searchGoogle, searchReddit } from '../apiCalls';
 
 function Home() {
 
-    const [keywords, setKeywords] = useState("");
     const [searchTerm, setSearchTerm] = useState('');
 
-    function handleSearch() {
-        searchReddit(keywords);
-    }
-
     const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchTerm(event.target.value);
+        setSearchTerm(event.target.value);
     };
-  
+
     const handleGoogleSearch = () => {
-      searchGoogle(searchTerm);
+        searchGoogle(searchTerm);
     };
 
     return (
@@ -36,8 +30,7 @@ function Home() {
                 <div className="search-bar">
                     <h1>SEARCH TO FIND THE SCAM</h1>
                     <div className="search-bar-content">
-                    <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
-                        <button onClick={handleSearch}>SEARCH</button>
+                        <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
                         <button onClick={handleGoogleSearch}>Search Google</button>
                     </div>
                 </div>

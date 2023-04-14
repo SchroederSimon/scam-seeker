@@ -1,13 +1,27 @@
+import { useEffect, useState } from 'react';
+import { searchGoogle } from '../apiCalls';
 import '../pages/Result.css'
 
 function Result() {
+    const [confidencePercentage, setConfidencePercentage] = useState<number | null>(null);
+
+    useEffect(() => {
+        searchGoogle('example keywords')
+            .then((confidence) => {
+                setConfidencePercentage(confidence);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
+
     return (
         <div className="result-container">
             <div className="cards-container">
                 <div className="card">
                     <h1>Sentiment</h1>
                     <div className="thermometer">
-                        <span className="temperature">0%</span>
+                        {confidencePercentage !== null && <p>Confidence percentage: {confidencePercentage}%</p>}
                     </div>
                     <p></p>
                 </div>
