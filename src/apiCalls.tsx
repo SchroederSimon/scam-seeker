@@ -2,19 +2,19 @@ import axios from 'axios';
 
 
 /* Reddit calls (i think will be good just retrieve some posts with good karma so the user can read and leave google api to give the %)*/
-export function searchReddit(searchTerm: string) {
+export async function searchReddit(searchTerm: string) {
     const searchQuery = `${searchTerm} scam OR ${searchTerm} estafa`;
     const subreddit = 'all';
     const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${searchQuery}`;
 
-    axios.get(url)
-        .then(response => {
-            console.log(response.data.data.children[0].data.title);
-            // TODO: Process search results
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    try {
+        const response = await axios.get(url);
+        const posts = response.data.data.children.map((child: any) => child.data);
+        return posts;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 }
 
 export async function searchGoogle(keywords: string): Promise<number> {

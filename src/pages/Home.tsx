@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../pages/Home.css'
 import { searchGoogle, searchReddit } from '../apiCalls';
+import Post from '../interfaces/redditInterface';
 
 
 
@@ -8,28 +9,36 @@ function Home() {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const [confidencePercentage, setConfidencePercentage] = useState<number | null>(null);
-    
+    /* Confidence number */
+    const [confidencePercentage, setConfidencePercentage] = useState<number>();
+    /* Reddit */
+    const [searchResults, setSearchResults] = useState<Post[]>([]);
+
+
     useEffect(() => {
         if (searchQuery) {
-          searchGoogle(searchQuery)
-            .then((confidence) => {
-              setConfidencePercentage(confidence);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+            searchGoogle(searchQuery)
+                .then((confidence) => {
+                    setConfidencePercentage(confidence);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         }
-      }, [searchQuery]);
+    }, [searchQuery]);
 
     const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
 
-    const handleGoogleSearch = () => {
+    const handleGoogleSearch = async () => {
         setSearchQuery(searchTerm);
-        searchReddit(searchTerm);
-      }
+        /* Reddit posts */
+        setSearchTerm(searchTerm);
+        const results = await searchReddit(searchTerm);
+        setSearchResults(results);
+        console.log(results)
+    }
 
     return (
         <>
@@ -63,27 +72,16 @@ function Home() {
                         </div>
                     </div>
                     <div className="tweets-newspapers">
-                        <div className="tweets-newspapers-grid">
-                            <div className="tweets-newspaper-info">
-                                <img src="/vite.svg" alt="" />
-                                <div className="tweets-newspaper-description">
-                                    <h1>Juan Carlos</h1>
-                                    <p>No se unan a inter-gold parece ser una estafa piramidal
-                                        estan involucrados personajes que ya estuvieron en otra
-                                        llamada Generacion Zoe
-                                    </p>
+                        {searchResults.map((post) => (
+                            <div className="tweets-newspapers-grid">
+                                <div className="tweets-newspaper-info" key={post.id}>
+                                    <h3>{post.title}</h3>
+                                    <p>{post.selftext?.split(' ').slice(0, 100).join(' ')}</p>
+                                    <a href={post.url} target="_blank" rel="noopener noreferrer">Read more</a>
                                 </div>
                             </div>
-                            <div className="tweets-newspaper-info">
-                                <p>El tuit del que sea</p>
-                            </div>
-                            <div className="tweets-newspaper-info">
-                                <p>Noticia</p>
-                            </div>
-                            <div className="tweets-newspaper-info">
-                                <p>Noticia</p>
-                            </div>
-                        </div>
+                        ))}
+
                     </div>
                 </div>
             </section>
