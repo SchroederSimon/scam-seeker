@@ -63,26 +63,16 @@ function Home() {
             </div>
             <section>
                 <div className="result-container">
-                    <div className="cards-container">
-                        <div className="card">
-                            <h1>Sentiment</h1>
-                            <div className="thermometer">
-                                <p>Confidence percentage: {confidencePercentage}%</p>
+                    <p>Confidence percentage: {confidencePercentage}%</p>
+                    {searchResults.map((post) => (
+                        <div className="result-card" key={post.id}>
+                            <div className='result-card-information'>
+                                <h3>{post.title}</h3>
+                                <p>{post.selftext?.split(' ').slice(0, 100).join(' ')}</p>
+                                <a href={post.url} target="_blank" rel="noopener noreferrer">Read more</a>
                             </div>
                         </div>
-                    </div>
-                    <div className="tweets-newspapers">
-                        {searchResults.map((post) => (
-                            <div className="tweets-newspapers-grid">
-                                <div className="tweets-newspaper-info" key={post.id}>
-                                    <h3>{post.title}</h3>
-                                    <p>{post.selftext?.split(' ').slice(0, 100).join(' ')}</p>
-                                    <a href={post.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                                </div>
-                            </div>
-                        ))}
-
-                    </div>
+                    ))}
                 </div>
             </section>
         </>

@@ -5,7 +5,7 @@ import axios from 'axios';
 export async function searchReddit(searchTerm: string) {
     const searchQuery = `${searchTerm} scam OR ${searchTerm} estafa`;
     const subreddit = 'all';
-    const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${searchQuery}`;
+    const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${searchQuery}&sort=relevance&limit=10`;
 
     try {
         const response = await axios.get(url);
