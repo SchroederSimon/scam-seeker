@@ -40,14 +40,13 @@ function Home() {
         const results = await searchReddit(searchTerm);
         setSearchResults(results);
         setShowConfidence(true);
-        console.log(results)
-    }
+        }
 
     return (
         <>
             <div className="home-container">
                 <div className="nav-bar-container">
-                    <h1>SCAM?</h1>
+                    <h1>SCAM SEARCH</h1>
                     <ul>
                         <li>HOME</li>
                         <li>ABOUT</li>
@@ -56,7 +55,7 @@ function Home() {
                 </div>
                 <div className="search-bar-container">
                     <div className="search-bar">
-                        <h1>SEARCH TO FIND THE SCAM</h1>
+                        <h1>Find out if it's a scam</h1>
                         <div className="search-bar-content">
                             <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
                             <button onClick={handleGoogleSearch}>Search</button>
@@ -74,7 +73,7 @@ function Home() {
                             </div>
                             <div className="confidence-text">
                                 <h2>{confidencePercentage}% scammy</h2>
-                                <span>This is obtained based on google search, more than 50% consider a scam</span>
+                                <span>This is obtained based on google search, more than 50% consider as a scam</span>
                             </div>
                         </div>
                     )}
