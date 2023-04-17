@@ -3,9 +3,15 @@ import axios from 'axios';
 
 /* Reddit calls (i think will be good just retrieve some posts with good karma so the user can read and leave google api to give the %)*/
 export async function searchReddit(searchTerm: string) {
-    const searchQuery = `${searchTerm} scam OR ${searchTerm} estafa`;
     const subreddit = 'all';
-    const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${searchQuery}&sort=relevance&limit=10`;
+    const searchTerms = ['estafa', 'scam', 'fraud'];
+    const matchingTerm = searchTerms.find((term) => searchTerm.includes(term));
+
+    const searchQuery = matchingTerm
+        ? `${searchTerm} ${matchingTerm}`
+        : `${searchTerm} ${searchTerms.join(' OR ')}`;
+
+    const url = `https://www.reddit.com/r/${subreddit}/search.json?q=${searchQuery}&sort=relevance&limit=15`;
 
     try {
         const response = await axios.get(url);
@@ -17,8 +23,11 @@ export async function searchReddit(searchTerm: string) {
     }
 }
 
+
+
+
 export async function searchGoogle(keywords: string): Promise<number> {
-    const searchQuery = encodeURIComponent(`${keywords} scam OR ${keywords} estafa`);
+    const searchQuery = encodeURIComponent(`${keywords} scam OR ${keywords} estafa OR ${keywords} fraud`);
 
     const cx = process.env.CSE_CX_GOOGLE;
     const apiKey = process.env.API_KEY;
@@ -35,7 +44,7 @@ export async function searchGoogle(keywords: string): Promise<number> {
         items.forEach((item: { title: string; snippet: string; }) => {
             const title = item.title.toLowerCase();
             const snippet = item.snippet.toLowerCase();
-            ['scam', 'estafa'].forEach(keyword => {
+            ['scam', 'estafa', 'fraud'].forEach(keyword => {
                 if (title.includes(keyword) || snippet.includes(keyword)) {
                     totalMatches++;
                 }

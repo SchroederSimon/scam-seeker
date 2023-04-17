@@ -59,7 +59,7 @@ function Home() {
                         <h1>SEARCH TO FIND THE SCAM</h1>
                         <div className="search-bar-content">
                             <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
-                            <button onClick={handleGoogleSearch}>Search Google</button>
+                            <button onClick={handleGoogleSearch}>Search</button>
                         </div>
                     </div>
                 </div>
@@ -68,18 +68,20 @@ function Home() {
                 <div className="result-container">
                     {showConfidence && (
                         <div className="confidence-container">
+                            <h1>Scam sentiment</h1>
                             <div className="confidence-thermometer">
                                 <div className="thermometer-bar" style={{ height: '100%', width: `${confidencePercentage}%` }}></div>
                             </div>
                             <div className="confidence-text">
-                                <p>{confidencePercentage}% confidence</p>
+                                <h2>{confidencePercentage}% scammy</h2>
+                                <span>This is obtained based on google search, more than 50% consider a scam</span>
                             </div>
                         </div>
                     )}
 
                     {searchResults.map((post) => (
                         <div className="result-card" key={post.id}>
-                            <div className='result-card-information'>
+                            <div className = "result-card-information">
                                 <h3>{post.title}</h3>
                                 <p>{post.selftext?.split(' ').slice(0, 100).join(' ')}</p>
                                 <a href={post.url} target="_blank" rel="noopener noreferrer">Read more</a>
