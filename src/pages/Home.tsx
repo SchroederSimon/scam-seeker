@@ -13,6 +13,8 @@ function Home() {
     const [confidencePercentage, setConfidencePercentage] = useState<number>();
     /* Reddit */
     const [searchResults, setSearchResults] = useState<Post[]>([]);
+    /* Search boolean */
+    const [showConfidence, setShowConfidence] = useState(false);
 
 
     useEffect(() => {
@@ -37,6 +39,7 @@ function Home() {
         setSearchTerm(searchTerm);
         const results = await searchReddit(searchTerm);
         setSearchResults(results);
+        setShowConfidence(true);
         console.log(results)
     }
 
@@ -63,7 +66,17 @@ function Home() {
             </div>
             <section>
                 <div className="result-container">
-                    <p>Confidence percentage: {confidencePercentage}%</p>
+                    {showConfidence && (
+                        <div className="confidence-container">
+                            <div className="confidence-thermometer">
+                                <div className="thermometer-bar" style={{ height: '100%', width: `${confidencePercentage}%` }}></div>
+                            </div>
+                            <div className="confidence-text">
+                                <p>{confidencePercentage}% confidence</p>
+                            </div>
+                        </div>
+                    )}
+
                     {searchResults.map((post) => (
                         <div className="result-card" key={post.id}>
                             <div className='result-card-information'>

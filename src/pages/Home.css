@@ -62,13 +62,13 @@
 
 /* tweets and newspaper information */
 .result-container {
-    padding-top: 100vh;
     width: 100%;
     height: auto;
     background-color: black;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: 20px;
+    padding-bottom: 100px;
 }
 .result-card{
     width: 100%;
@@ -79,3 +79,32 @@
 .result-card-information{
     padding: 5%;
 }
+
+/* Confidence thermomether*/
+.confidence-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .confidence-thermometer {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 2vh;
+    background-color: gray;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .thermometer-bar {
+    height: 100%;
+    background-color: red;
+  }
+  
+  .confidence-text {
+    font-size: 20px;
+  }
+  
