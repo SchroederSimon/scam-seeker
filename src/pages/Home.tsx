@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../pages/Home.css'
 import { searchGoogle, searchReddit } from '../apiCalls';
 import Post from '../interfaces/redditInterface';
+import { Link } from 'react-router-dom';
 
 
 
@@ -40,19 +41,16 @@ function Home() {
         const results = await searchReddit(searchTerm);
         setSearchResults(results);
         setShowConfidence(true);
+
+        const resultsSection = document.querySelector('.results');
+        if (resultsSection) {
+          resultsSection.scrollIntoView({ behavior: 'smooth' });
         }
+    }
 
     return (
         <>
             <div className="home-container">
-                <div className="nav-bar-container">
-                    <h1>SCAM SEARCH</h1>
-                    <ul>
-                        <li>HOME</li>
-                        <li>ABOUT</li>
-                        <li>ARTICLES</li>
-                    </ul>
-                </div>
                 <div className="search-bar-container">
                     <div className="search-bar">
                         <h1>Find out if it's a scam</h1>
@@ -63,7 +61,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <section>
+            <section className="results">
                 <div className="result-container">
                     {showConfidence && (
                         <div className="confidence-container">
@@ -80,9 +78,9 @@ function Home() {
 
                     {searchResults.map((post) => (
                         <div className="result-card" key={post.id}>
-                            <div className = "result-card-information">
+                            <div className="result-card-information">
                                 <h3>{post.title}</h3>
-                                <p>{post.selftext?.split(' ').slice(0, 100).join(' ')}</p>
+                                <p>{post.selftext?.split(' ').slice(0, 80).join(' ')}</p>
                                 <a href={post.url} target="_blank" rel="noopener noreferrer">Read more</a>
                             </div>
                         </div>

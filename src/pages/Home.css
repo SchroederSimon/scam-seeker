@@ -7,26 +7,6 @@
     justify-content: center;
 }
 
-.nav-bar-container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 14vh;
-    position: fixed;
-    z-index: 999;
-    background-color: var(--colorBlack);
-
-}
-.nav-bar-container ul {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
-.nav-bar-container li{
-    list-style: none;
-}
-
 .search-bar-container{
     position: relative;
     width: 100%;

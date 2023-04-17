@@ -24,9 +24,10 @@ function About() {
                     cards.map(card => {
                         return (
                             <div className="card" key={card.id}>
-                                <h1>{card.title}</h1>
-                                <img src={card.img} alt="" />
-                                <p>{card.description}</p>
+                                <div className="card-information">
+                                    <h2>{card.title}</h2>
+                                    <p>{card.description}</p>
+                                </div>
                             </div>
                         )
                     })
