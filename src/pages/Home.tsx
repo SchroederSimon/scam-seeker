@@ -58,7 +58,7 @@ function Home() {
                             <input type="text" value={searchTerm} onChange={handleSearchTermChange} />
                             <button onClick={handleGoogleSearch}>Search</button>
                         </div>
-                        <span>Using Google search instead of Twitter due to API difficulties</span>
+                        <span>Using Google search instead of Twitter due to API difficulties :(</span>
                     </div>
                 </div>
             </div>
