@@ -7,4 +7,4 @@ For example, if a user searches for "Generación Zoe," the application will anal
 of the search being related to a scam. The application will also display the tweets, news articles, and posts used to determine the sentiment, so the user can check 
 for themselves.
 
-The project is under construction (waiting for API acces from twitter)
+Project finished (still waiting for API acces from twitter)
