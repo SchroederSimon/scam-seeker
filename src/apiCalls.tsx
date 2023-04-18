@@ -4,7 +4,7 @@ import axios from 'axios';
 /* Reddit calls (i think will be good just retrieve some posts with good karma so the user can read and leave google api to give the %)*/
 export async function searchReddit(searchTerm: string) {
     const subreddit = 'all';
-    const searchTerms = ['estafa', 'scam', 'fraud'];
+    const searchTerms = ['estafa', 'scam', 'fraud', 'piramidal', 'esquema', 'ponzi', 'scheme'];
     const matchingTerm = searchTerms.find((term) => searchTerm.includes(term));
 
     const searchQuery = matchingTerm
@@ -32,8 +32,8 @@ export async function searchGoogle(keywords: string): Promise<number> {
     const cx = process.env.CSE_CX_GOOGLE;
     const apiKey = process.env.API_KEY;
 
-    const startIndex = 11; // Index of the first result to return (second page)
-    const numResults = 10; // Number of results to return per page
+    const startIndex = 11;
+    const numResults = 10; 
 
     const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${searchQuery}&start=${startIndex}&num=${numResults}`;
 
@@ -44,7 +44,7 @@ export async function searchGoogle(keywords: string): Promise<number> {
         items.forEach((item: { title: string; snippet: string; }) => {
             const title = item.title.toLowerCase();
             const snippet = item.snippet.toLowerCase();
-            ['scam', 'estafa', 'fraud'].forEach(keyword => {
+            ['scam', 'estafa', 'fraud', 'piramidal', 'esquema', 'ponzi', 'scheme'].forEach(keyword => {
                 if (title.includes(keyword) || snippet.includes(keyword)) {
                     totalMatches++;
                 }
